@@ -1,0 +1,64 @@
+<div class="container">
+
+	<h3>เกี่ยวกับเรา<small></small></h3>
+	<ol class="breadcrumb breadcrumb-arrow">
+        <li><a href="#/">หน้าแรก</a></li>
+        <li class="active"><span>เกี่ยวกับเรา</span></li>
+    </ol>
+
+    <div class="row">
+    	<div class="col-md-6 col-xs-12">
+    		<div class="text-center">
+    			<br>
+    			<img src="assets/img/esw-logo.png" class="img-responsive" alt="Image">
+    			<br>
+				
+    			
+    			<h4><strong >อีเมล์:</strong> support@easywatch.com</h4>
+				<h4><strong>โทร: </strong> +66(0)2-000-000</h4>
+				<h4><strong>ที่อยู่:</strong>บริษัท อีซีวอทช์ ประเทศไทย จำกัด</span><br>
+					<span>เลขที่ 01 อาคารอีซีวอทช์ เซ็นเตอร์ ชั้นที่ 18-19 ถนนรามคำแหง แขวงหัวหมาก เขตบางกระปิ กรุงเทพมหานคร 10240</span>
+				</h4>
+    		</div>
+    	</div>
+    	<div class="col-md-5 col-xs-12 col-md-offset-1">
+    		<br>
+    		<form id="formMsg">
+    			<legend>ติดต่อเรา</legend>
+    		
+    			<div class="form-group">
+    				<label>ชื่อ</label>
+    				<input type="text" class="form-control" ng-model="name" placeholder="ชื่อ">
+    			</div>
+    			<div class="form-group">
+    				<label>Email</label>
+    				<input type="text" class="form-control" ng-model="email" placeholder="Email">
+    			</div>
+    			<div class="form-group">
+    				<label>ข้อความ</label>
+    				<textarea class="form-control" rows="3" ng-model="msg" placeholder="ป้อนข้อความ"></textarea>
+    			</div>
+
+    			<button type="button" class="btn btn-primary pull-right" ng-disabled="!name || !email || !msg" ng-click="sentMessage()">
+    				ส่งข้อความ
+    			</button>
+    		</form>
+    		<div id="affTerSent" class="text-center" style="color:#37BC9B;display:none;">
+    			<br>
+    			<h1><i class="fa fa-check-circle-o"></i></h1>
+    			<h3>ส่งข้อความของคุณสำเร็จแล้ว</h3>
+    			<br>
+    			<button id="myBtn" type="button" class="btn btn-default btn-lg">ตกลง</button>
+    			<br>
+    		</div>
+    	</div>
+    </div>
+
+</div>
+
+<script>
+	$('#myBtn').click(function() {
+		$('#affTerSent').fadeOut();
+		$('#formMsg').fadeIn();
+	});
+</script>

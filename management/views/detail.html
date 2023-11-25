@@ -1,0 +1,93 @@
+<div class="page-title">
+    <div class="title_left">
+        <h3>{{product.brand_name}}: {{product.model}}</h3>
+    </div>
+    <div class="title_right">
+    	<div class="pull-right">
+    		<a href="#/product/edit/{{product.model}}" class="btn btn-info">
+    			<i class="fa fa-pencil"></i> แก้ไข
+    		</a>
+    		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+    			<i class="fa fa-trash-o"></i> ลบ
+    		</button>
+    	</div>
+        <!-- <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+        </div> -->
+    </div>
+</div>
+<div class="clearfix"></div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>รายละเอียดสินค้า: {{product.brand_name}} - {{product.model}}</h2>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+	            <div class="row">
+
+	                <div class="col-md-7 col-xs-12">
+						<br>
+						<div class="product-image">
+                            <img ng-src="../{{imgShow}}" alt="..." />
+                        </div>
+                       
+                        <div class="product_gallery">
+                        	<a href="" class="thumbnail" ng-repeat="img in imgs" ng-click="imgCh($index)">
+                        		<img ng-src="../{{img.img_path}}" alt="">
+                        	</a>
+                        </div>
+    							
+	                </div>
+
+	                <div class="col-md-5 col xs-12" style="border:0px solid #e5e5e5;">
+	                	<h3 class="prod_title">{{product.brand_name}}: {{product.model}}</h3>
+	                	<h2>สี: {{product.color}}</h2>
+	                	<br>
+	                	<h2>การรับประกัน: {{product.warranty}}</h2>
+	                	<br>
+	                	<h2>จำนวน: {{product.stock}} ชิ้น</h2>
+	                	<br>
+	                	<h2>รายละเอียด:</h2>
+	                	<div ng-bind-html="product.detail"></div>
+						<br>
+	                	<div class="product_price">
+	                		<div class="price text-right">{{product.price | currency:''}} บาท</div>
+	                	</div>
+
+	                </div>
+
+	            </div>
+	        </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">ลบสินค้า !</h4>
+            </div>
+            <div class="modal-body">
+                <h5>{{product.brand_name}} - {{product.model}}</h5>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                <button type="button" class="btn btn-primary" ng-click="removeProduct(product.model)">ตกลง</button>
+            </div>
+        </div>
+    </div>
+</div>

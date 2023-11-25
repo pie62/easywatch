@@ -1,0 +1,32 @@
+.form-control-inline {
+    min-width: 0;
+    width: auto;
+    display: inline;
+}
+.ew-text-center{
+	text-align: center;
+}
+
+.over-f {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bosom-none {
+    margin-right: -15px; // Removes the right gap
+    margin-left: -15px;  // Removes the left gap
+}
+
+.product_price {
+	margin: 20px 0;
+	padding: 5px 10px;
+	text-align: left;
+	border: 2px dashed #E0E0E0;
+}
+.price {
+	font-size: 40px;
+	font-weight: 400;
+	color: #37BC9B;
+	margin: 0;
+}

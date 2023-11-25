@@ -1,0 +1,155 @@
+<div class="page-title">
+    <div class="title_left">
+        <h3>{{product.brand_name}}: {{product.model}}</h3>
+    </div>
+    <div class="title_right">
+    	<div class="pull-right">
+    		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+    			<i class="fa fa-trash-o"></i> ลบ
+    		</button>
+    	</div>
+        <!-- <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+        </div> -->
+    </div>
+</div>
+<div class="clearfix"></div>
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>แก้ไขรายละเอียดสินค้า: {{product.brand_name}} - {{product.model}}</h2>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+            	<div class="row">
+            		<div class="col-md-6 col-xs-12">
+            			<form class="form-horizontal">
+							<div class="form-group">
+							    <label class="col-sm-4 col-xs-12 control-label">ยี่ห้อ</label>
+							    <div class="col-sm-8 col-xs-12">
+							      	<h4>{{product.brand_name}}</h4>
+							    </div>
+							</div>
+						  	<div class="form-group">
+							    <label class="col-sm-4 col-xs-12 control-label">รุ่น</label>
+							    <div class="col-sm-8 col-xs-12">
+							      	<input type="text" class="form-control" ng-model="pd_model2" placeholder="ป้อนชื่อรุ่นสินค้า">
+							    </div>
+						  	</div>
+						  	<div class="form-group">
+							    <label class="col-sm-4 col-xs-12 control-label">ราคา (บาท)</label>
+							    <div class="col-sm-8 col-xs-12">
+							      	<input type="number" class="form-control" ng-model="pd_price" placeholder="ป้อนราคา ตัวเลขเท่านั้น">
+							    </div>
+						  	</div>
+						  	<div class="form-group">
+							    <label class="col-sm-4 col-xs-12 control-label">จำนวน (ชิ้น)</label>
+							    <div class="col-sm-8 col-xs-12">
+							      	<input type="number" class="form-control" ng-model="pd_unit" placeholder="ป้อนจำนวน ตัวเลขเท่านั้น">
+							    </div>
+						  	</div><br>
+						
+						  	<div class="form-group">
+							    <label class="col-sm-4 col-xs-12 control-label">สี *</label>
+							    <div class="col-sm-8 col-xs-12">
+							      	<input type="text" class="form-control" ng-model="pd_color" ng-init="product.color" placeholder="ป้อนข้อมูลสี">
+							    </div>
+						  	</div>
+						  	<div class="form-group">
+							    <label class="col-sm-4 col-xs-12 control-label">การรับประกัน *</label>
+							    <div class="col-sm-8 col-xs-12">
+							      	<select class="form-control" ng-model="pd_wrt" ng-options="w as w for w in wrt">
+				                        <option value="" selected>ไม่มี</option>
+				                    </select>
+							    </div>
+						  	</div>
+						  	<div class="form-group">
+						  		<div class="col-sm-4"></div>
+			                    <div class="col-sm-8 col-xs-12">
+			                    	<span id="helpBlock" class="help-block">* หมายถึง สามารถเว้นว่างได้</span>
+			                    </div>
+			                </div>
+			                <!-- <div class="form-group">
+			                	<button type="button" id="addpd" class="btn btn-primary pull-right" ng-click=" addProduct()" ng-disabled="!pd_brand_id || !pd_model || !pd_price || !pd_unit">
+					                <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> เสร็จสิ้น
+					            </button>
+			                </div> -->
+						</form>
+            		</div>
+            		<div class="col-md-6 col-xs-12">
+            			<!-- <text-angular ng-model="pd_detail"></text-angular> -->
+            			<div class="row">
+            				<h2  class="col-md-4">ยี่ห้อ:</h2>
+							<h2  class="col-md-8">{{product.brand_name}}</h2>
+            			</div>
+						<div class="row">
+							<h2  class="col-md-4">รุ่น:</h2>
+							<h2  class="col-md-8">{{pd_model2}}</h2>
+						</div>
+						<div class="row">
+							<h2  class="col-md-4">สี:</h2>
+							<h2  class="col-md-8">{{pd_color}}</h2>
+						</div>
+						<div class="row">
+							<h2  class="col-md-4">การรับประกัน:</h2>
+							<h2  class="col-md-8">{{pd_wrt}}</h2>
+						</div>
+						<div class="row">
+							<h2  class="col-md-4">จำนวน:</h2>
+							<h2  class="col-md-8">{{pd_unit}} ชิ้น</h2>
+						</div>
+						<!-- <h2  class="col-md-12">รายละเอียด:</h2>
+						<div class="col-md-12" ng-bind-html="pd_detail"></div> -->
+	                	<div class="col-md-12 product_price">
+	                		<div class="price text-right">{{pd_price | currency:''}} บาท</div>
+	                	</div>
+            		</div>
+            	</div>
+	            <div class="row">
+	            	<div class="col-md-2 col-xs-12">
+	            		<h4 class="text-right">รายละเอียด *</h4>
+	            	</div>
+					<div class="col-md-10 col-xs-12">
+						<text-angular ng-model="pd_detail"></text-angular>
+					</div>
+	            </div>
+	            <div class="row">
+	            	<br>
+	            	<div class="text-right">
+	            		<button type="button" class="btn btn-primary pull-right" ng-click=" editProduct()" ng-disabled="!pd_model || !pd_price || !pd_unit">ตกลง</button>
+	            		<button type="button" class="btn btn-default pull-right" ng-click=" cancleEdit()">ยกเลิก</button>
+	            	</div>
+	            </div>
+	        </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  	<div class="modal-dialog modal-sm" role="document">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">ลบสินค้า !</h4>
+      		</div>
+      		<div class="modal-body">
+        		<h5>{{product.brand_name}} - {{product.model}}</h5>
+      		</div>
+	      	<div class="modal-footer">
+	        	<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+	        	<button type="button" class="btn btn-primary" ng-click="removeProduct(product.model)">ตกลง</button>
+	      	</div>
+    	</div>
+  	</div>
+</div>

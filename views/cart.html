@@ -1,0 +1,139 @@
+<div class="container">
+	
+	<h3>ตะกร้าสินค้า<small></small></h3>
+	<ol class="breadcrumb breadcrumb-arrow">
+        <li><a href="#/">หน้าแรก</a></li>
+        <li class="active"><span>ตะกร้าสินค้า</span></li>
+    </ol>
+	
+	<div class="row" ng-hide="cart">
+		<div class="col-md-12 col-xs-12 text-center" style="padding:80px 0 80px 0;">
+			<h1 style="font-size:100px;"><i class="fa fa-shopping-cart"></i></h1>
+			<h2>ไม่มีสินค้าในตะกร้า</h2>
+		</div>
+	</div>
+
+	<div class="row" ng-hide="!cart">
+		
+		<div class="col-md-9 col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-12 col-xs-12">
+							<h4 style="margin-top:0">
+								<i class="fa fa-shopping-cart"></i> สินค้าในตะกร้า {{cart.length}} รายการ
+							</h4>
+							<hr>
+						</div>
+					</div>
+				   	<div class="row" ng-repeat="item in cart">
+				   		<div class="col-md-4 col-xs-12">
+				   			<img ng-src="{{item.img_path}}" class="img-responsive">
+				   		</div>
+				   		<div class="col-md-5 col-xs-12">
+				   			<p><strong>{{item.brand_name}} : {{item.model}}</strong></p>
+				   			<p>สี : <strong>{{item.color}}</strong></p>
+				   			<p>การรับประกัน : <strong>{{item.warranty}}</strong></p>
+				   			<p>จำนวน : <strong>{{item.unit}} ชิ้น</strong></p>
+				   			<p>สินค้าในสต๊อก : <strong>{{item.stock}} ชิ้น</strong></p>
+				   			<p ng-hide="item.price_promotion > 0">ราคา (ต่อชิ้น) : <strong>{{item.price | currency:'':0}} บาท</strong></p>
+				   			<p ng-hide="item.price_promotion == 0">ราคา (ต่อชิ้น) : <strong>{{item.price_promotion | currency:'':0}} บาท</strong></p>
+				   			<p>
+				   				<button type="button" class="btn btn-xs btn-info"  ng-click="editBtn(item)" data-toggle="modal" data-target="#editUnit">
+				   					<i class="fa fa-pencil"></i> แก้ไข
+				   				</button> 
+				   				<button type="button" class="btn btn-xs btn-danger" ng-click="removeItem(item.model)">
+				   					<i class="fa fa-trash-o"></i> ลบ
+				   				</button>
+				   			</p>
+				   		</div>
+				   		<div class="col-md-3 col-xs-12 text-right">
+				   			<h3 ng-hide="item.price_promotion > 0" style="color:#37BC9B;">{{item.price * item.unit | currency:'':0}} บาท</h3>
+				   			<h3 ng-hide="item.price_promotion == 0" style="color:#37BC9B;">{{item.price_promotion * item.unit | currency:'':0}} บาท</h3>
+				   			<!-- <div class="text-left">
+				   				<br>
+				   				<div class="panel panel-default">
+				   					<div class="panel-body">
+				   						<p style="color:#37BC9B;"><strong>แก้ไข</strong></p>
+				   						<form class="form-horizontal">
+				   							<div class="form-group">
+				   								<label class="col-sm-5 control-label">จำนวน:</label>
+				   								<div class="col-sm-7">
+				   									<input type="number" ng-model="unitCh" ng-init="unitCh = 1" class="form-control">
+				   								</div>
+				   								
+				   							</div>
+				   							<br>
+				   							<div class="text-right">
+				   								<button type="button" class="btn btn-primary" ng-disabled="!unitCh || unitCh < 1" ng-click="editItem(item.model)">ตกลง</button>
+				   							</div>
+				   						</form>
+				   					</div>
+				   				</div>
+				   			</div> -->
+				   		</div>
+				   		<div class="col-md-12 col-xs-12"><hr></div>
+				   	</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-md-3 col-xs-12">
+			<div class="pricing">
+				<ul>
+					<li class="unit price-primary">
+						<div class="price-title">
+							<h3>{{getPriceTotal | currency:'':0}} บาท</h3>
+							<p>ราคารวมทั้งหมด</p>
+						</div>
+						<div class="price-body">
+							<h4>ฟรี ค่าจัดส่ง</h4>
+							<p>สำหรับสินค้าทุกรุ่น &amp; ทุกยี่ห้อ</p>
+							<ul>
+								<li>จำนวนทั้งหมด {{unitTotal}} ชิ้น</li>
+								<li>สินค้าคุณภาพดีทุกชิ้น</li>
+								<li>จัดส่งทันทีเมื่อจ่ายเงิน</li>
+							</ul>
+						</div>
+						<div class="price-foot">
+							<a href="#/cart/to_order" type="button" class="btn btn-primary btn-lg">สั่งซื้อ</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+<div class="modal fade" id="editUnit" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">แก้ไข</h4>
+			</div>
+			<div class="modal-body">
+					<p>
+						<strong>{{bbb}} : {{mmm}}</strong>
+					</p>
+				<form class="form-horizontal">
+				   	<div class="form-group">
+				   		<label class="col-sm-6 control-label">จำนวน:</label>
+				   		<div class="col-sm-6">
+				   			<input type="number" ng-model="unitCh" ng-init="unitCh = 1" class="form-control">
+				   		</div>
+				   								
+				   	</div>
+				   	<br>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="editItem(mmm)" ng-disabled="!unitCh || unitCh < 1">ตกลง</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,88 @@
+<div style="background-color:rgb(241, 242, 246);">
+	<div class="container">
+
+		<br>
+		<div class="row">
+			<div class="col-md-2 col-xs-6 col-md-offset-5 col-xs-offset-3">
+				<img src="assets/img/Icon-user.png" class="img-responsive">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+
+			<div class="col-md-4 col-xs-12 col-md-offset-4">
+				<div class="panel">
+	              	<ul id="myTab1" class="nav nav-tabs nav-justified">
+	                	<li class="active">
+	                		<a data-target="#login" data-toggle="tab">
+	                			<strong><i class="fa fa-user"></i> เข้าสู่ระบบ</strong>
+	                		</a>
+	                	</li>
+	                	<li class="">
+	                		<a data-target="#regis" data-toggle="tab">
+	                			<strong><i class="fa fa-user-plus"></i> สมัครสมาชิก</strong>
+	                		</a>
+	                	</li>
+	              	</ul>
+	              	<div id="myTabContent" class="tab-content">
+	                	<div class="tab-pane fade active in" id="login">
+	                		<br>
+	                  		<div class="form-horizontal">
+			                    <div class="form-group">
+			                        <label class="col-sm-4 control-label">ชื่อผู้ใช้ :</label>
+			                        <div class="col-sm-8">
+			                            <input type="text" class="form-control" ng-model="lusername" ng-change="canlogin = true" placeholder="ชื่อผู้ใช้">
+			                        </div>
+			                    </div>
+			                    <br>
+			                    <div class="form-group">
+			                        <label class="col-sm-4 control-label">รหัสผ่าน :</label>
+			                        <div class="col-sm-8">
+			                            <input type="password" class="form-control" ng-model="lpassword" ng-change="canlogin = true" placeholder="รหัสผ่าน">
+			                        </div>
+			                    </div>
+			                    <br>
+			                    <div class="text-right">
+			                    	<h5 ng-hide="canlogin" ng-init="canlogin = true">ชื่อผู้ใช้หรือหรัสผ่านผิด</h5>
+			                    	<button type="button" ng-click="login()" ng-disabled="!lusername || !lpassword" class="btn btn-info">เข้าสู่ระบบ</button>
+			                    </div>
+			                </div>
+	                	</div>
+	                	<div class="tab-pane fade" id="regis">
+	                  		<br>
+	                  		<div class="form-horizontal">
+			                    <div class="form-group">
+			                        <label class="col-sm-5 control-label">ชื่อผู้ใช้ :</label>
+			                        <div class="col-sm-7">
+			                            <input type="text" class="form-control" ng-model="rusername" ng-change="canregis = true" placeholder="ชื่อผู้ใช้ที่ต้องการ">
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <label class="col-sm-5 control-label">รหัสผ่าน :</label>
+			                        <div class="col-sm-7">
+			                            <input type="password" class="form-control" ng-model="rpassword" placeholder="รหัสผ่าน">
+			                        </div>
+			                    </div>
+			                    <div class="form-group">
+			                        <label class="col-sm-5 control-label">ยืนยันรหัสผ่าน :</label>
+			                        <div class="col-sm-7">
+			                            <input type="password" class="form-control" ng-model="rpasswordc" placeholder="ยืนยันรหัสผ่าน">
+			                        </div>
+			                    </div>
+			                    <br>
+			                    <div class="text-right">
+			                    	<h5 ng-hide="canregis" ng-init="canregis = true">ไม่สามารถใช้ชื่อนี้ได้</h5>
+			                    	<button type="button" ng-click="regis()" ng-disabled="!rusername || !rpassword || !rpasswordc || rpassword != rpasswordc" class="btn btn-info">สมัครสมาชิก</button>
+			                    </div>
+			                </div>
+	                	</div>
+	              	</div>
+	            </div>
+			</div>
+
+		</div>
+
+	</div>
+	<br><br>
+</div>
+

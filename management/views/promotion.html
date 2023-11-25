@@ -1,0 +1,189 @@
+<div class="page-title">
+	<div class="title_left">
+		<h3>โปรโมชั่น</h3>
+	</div>
+
+	<div class="title_right">
+		<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+			<!-- <div class="input-group">
+				<input type="text" class="form-control" placeholder="Search for...">
+				<span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+			</div> -->
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+
+<div class="row">
+
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<div class="x_panel">    <!-- style="height:600px;" -->
+			<div class="x_title">
+				<h2>สินค้าโปรโมชั่น / ลดราคา</h2>
+				<!-- <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                    	
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                </ul> -->
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<div ng-hide="pd_pmt">
+					<br>
+					<br>
+					<br>
+					<h1 class="text-center">ไม่มีสินค้าราคาโปรโมชั่น</h1>
+					<br>
+					<br>
+					<br>
+				</div>
+				<div ng-repeat="product in pd_pmt | startFrom: pagepmt.page * pagepmt.perPage | limitTo: pagepmt.perPage" class="mail_list">
+					<div class="left">{{$index + 1}}</div>
+					<div class="right">
+						<div class="row">
+							<div class="col-md-8 col-xs-8">
+								<h2>{{product.brand_name}}</h2>
+								<h2>{{product.model}}</h2>
+							</div>
+							<div class="col-md-4 col-xs-4 text-right">
+								<h5>ราคาปกติ {{product.price | currency:'':0}}</h5>
+								<h2 class="text-success">โปรโมชั่น {{product.price_promotion | currency:'':0}}</h2>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-xs-12 text-right">
+								<button type="button" class="btn btn-info btn-xs" ng-click="editPmt(product)">
+									<i class="fa fa-pencil"></i> แก้ไข
+								</button>
+								<button type="button" class="btn btn-danger btn-xs" ng-click="removePmt(product)">
+									<i class="fa fa-trash-o"></i> ลบ
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul class="pagination">
+					<li><a href="" ng-click="pagepmt.prevPage()">&laquo;</a></li>
+					<li ng-repeat="n in [] | range: pagepmt.numPages" ng-class="{active: n == pagepmt.page}">
+					  	<a href="" ng-click="pagepmt.toPageId(n)">{{n + 1}}</a>
+					</li>
+					<li><a href="" ng-click="pagepmt.nextPage()">&raquo;</a></li>
+				</ul>
+			</div>		
+		</div>
+	</div>
+
+	<div id="productPanel" class="col-md-6 col-sm-12 col-xs-12">
+		<div class="x_panel">    <!-- style="height:600px;" -->
+			<div class="x_title">
+				<h2>สินค้าราคาปกติ</h2>
+				<!-- <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                    	
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                </ul> -->
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<div class="col-md-6 col-xs-12">
+					
+				</div>
+				<div class="col-md-6 col-xs-12">
+					<div class="input-group">
+					   	<input type="text" class="form-control" ng-model="q" placeholder="ค้นหาสินค้าในตาราง">
+					   	<span class="input-group-btn">
+					        <button class="btn btn-default" type="button" ng-click="q = ''"><i class="fa fa-close"></i></button>
+					   	</span>
+					</div>
+				</div>
+				<table class="table table-striped responsive-utilities">
+					<thead>
+						<tr class="headings">
+							<th class="column-title">ยี่ห้อ</th>
+							<th class="column-title">รุ่น</th>
+							<th class="column-title">ราคา</th>
+							<th class="column-title">ราคาโปรโมชั่น</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="product in products | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage | filter:q as results">
+							<td>{{product.brand_name}}</td>
+							<td>{{product.model}}</td>
+							<td>{{product.price | currency:'':0}}</td>
+							<td class="text-center">
+								<button type="button" class="btn btn-primary btn-xs" ng-click="editPmt(product)">
+									<i class="fa fa-plus"></i> โปรโมชั่น
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<ul class="pagination">
+					<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+					<li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}">
+					  	<a href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a>
+					</li>
+					<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+				</ul>
+			</div>	
+		</div>
+	</div>
+
+	<!-- Edit Panel -->
+	<div id="editPanel" class="col-md-6 col-sm-12 col-xs-12" style="display:none;">
+		<div class="x_panel">    <!-- style="height:600px;" -->
+			<div class="x_title">
+				<h2>แก้ไขราคาโปรโมชั่น</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<br>
+				<h2>{{brandEdit}} : {{modelEdit}}</h2>
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-6 col-xs-6 control-label">ราคาปกติ:</label>
+						<div class="col-sm-6 col-xs-6">
+							<h4>{{priceEdit}} บาท</h4>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-6 col-xs-6 control-label">ราคาโปรโมชั่น:</label>
+						<div class="col-sm-6 col-xs-6">
+							<input type="number" class="form-control" ng-model="pricePmt" placeholder="ป้อนราคาโปรโมชั่น">
+						</div>	
+					</div>
+				</form><br>
+				<div class="text-right">
+					<button type="button" class="btn btn-default" ng-click="cancel()">ยกเลิก</button>
+					<button type="button" class="btn btn-primary" ng-disabled="!pricePmt" ng-click="updataPmt()">ตกลง</button>
+				</div>
+			</div>	
+		</div>
+	</div>
+
+
+	<!-- remove Panel -->
+	<div id="removePanel" class="col-md-6 col-sm-12 col-xs-12" style="display:none;">
+		<div class="x_panel">    <!-- style="height:600px;" -->
+			<div class="x_title">
+				<h2>ลบราคาโปรโมชั่น</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<h2>{{brandRemove}} : {{modelRemove}}</h2>
+				<h2 class="text-right">ราคาปกติ: {{pricerm}}</h2>
+				<h2 class="text-right">ราคาโปรโมชั่น: {{pricepmtrm}}</h2>
+				<h2 class="text-right text-danger">ต้องการลบราคาโปรโมชั่นของสินค้านี้ ?</h2>
+				<div class="text-right">
+					<button type="button" class="btn btn-default" ng-click="cancel()">ยกเลิก</button>
+					<button type="button" class="btn btn-primary" ng-click="pmtRemove()">ตกลง</button>
+				</div>
+			</div>	
+		</div>
+	</div>
+
+</div>

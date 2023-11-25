@@ -1,0 +1,101 @@
+<div class="container">
+	
+	<h3>รายการสั่งซื้อ<small></small></h3>
+	<ol class="breadcrumb breadcrumb-arrow">
+        <li><a href="#/">หน้าแรก</a></li>
+        <li class="active"><span>รายการสั่งซื้อ</span></li>
+    </ol>
+
+    <div class="row">
+
+    	<div class="col-md-6 col-xs-12">
+    		<div class="page-header">
+    		  <h4>รายการสินค้าที่เคยสั่งซื้อ<small></small></h4>
+    		</div>
+            <div class="text-center" ng-hide="haveOrder">
+                <br>
+                <br>
+                <h2 style="color: #AAB2BD;">ไม่มีข้อมูล</h2>
+                <br>
+                <br>
+                <hr>
+            </div>
+    		<div class="table-responsive" ng-hide="!haveOrder">
+    			<table class="table table-hover">
+    				<thead>
+    					<tr>
+    						<th>ID</th>
+    						<th>ชื่อผู้รับ</th>
+                            <th>วันที่สั่งซื้อ</th>
+                            <th class="text-center">ราคาทั้งหมด</th>
+                            <th class="text-center">สถานะ</th>
+                            <th class="text-center">รายละเอียด</th>
+    					</tr>
+    				</thead>
+    				<tbody>
+    					<tr ng ng-repeat="order in orders">
+    						<td>{{order.id}}</td>
+    						<td>{{order.first_name}} {{order.last_name}}</td>
+                            <td>{{order.order_date | date:'dd/MM/yyyy'}}</td>
+                            <td class="text-center">{{order.total_price | currency:'':0}}</td>
+                            <td class="text-center"><strong>{{order.order_status}}</strong></td>
+                            <td class="text-center">
+                                <a class="btn btn-info btn-xs" href="#/order/{{order.id}}" role="button">รายละเอียด</a>
+                            </td>
+    					</tr>
+    				</tbody>
+    			</table>
+                <br>
+                <br>
+                <br>
+    		</div>
+    	</div>
+        <!-- ========================================================================== -->
+    	<div class="col-md-6 col-xs-12">
+    		<div class="page-header">
+                <h4>รายการสินค้าที่ยังไม่จ่ายเงิน<small></small></h4>
+            </div>
+            <div class="text-center" ng-hide="payOrder">
+                <br>
+                <br>
+                <h2 style="color: #AAB2BD;">ไม่มีข้อมูล</h2>
+                <br>
+                <br>
+                <hr>
+            </div>
+            <div class="table-responsive" ng-hide="!payOrder">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>ชื่อผู้รับ</th>
+                            <th>วันที่สั่งซื้อ</th>
+                            <th class="text-center">ราคาทั้งหมด</th>
+                            <th class="text-center">แจ้งการชำระเงิน</th>
+                            <th class="text-center">รายละเอียด</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng ng-repeat="order in noPays">
+                            <td>{{order.id}}</td>
+                            <td>{{order.first_name}} {{order.last_name}}</td>
+                            <td>{{order.order_date | date:'dd/MM/yyyy'}}</td>
+                            <td class="text-center">{{order.total_price | currency:'':0}}</td>
+                            <td class="text-center">
+                                <a class="btn btn-primary btn-xs" href="#/order/{{order.id}}/payment" role="button">แจ้งการชำระเงิน</a>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-info btn-xs" href="#/order/{{order.id}}" role="button">รายละเอียด</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <br>
+            </div>
+    	</div>
+
+    </div>
+
+</div>

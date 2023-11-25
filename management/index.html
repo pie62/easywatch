@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title ng-bind="pageTitle + ' - Easywatch'"></title>
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="assets/fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom styling plus plugins -->
+    <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="assets/css/icheck/flat/green.css" rel="stylesheet">
+
+    <link href="assets/css/easywatch.css" rel="stylesheet">
+
+    <link href="assets/css/textAngular.css" rel="stylesheet">
+
+    <script src="assets/js/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+        <![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+</head>
+
+
+<body class="nav-md">
+
+    <div class="container body">
+
+
+        <div class="main_container">
+
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="#/" class="site_title"><i class="fa fa-clock-o"></i> <span>EasyWatch</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <!-- menu prile quick info -->
+                    <div class="profile" ng-controller="loginCtl">
+                        <div class="profile_pic">
+                            <img src="assets/images/user.png" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2 id="uname">{{adminname}}</h2>
+                        </div>
+                    </div>
+                    <!-- /menu prile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+                        <div class="menu_section">
+                            <h3 style="margin-top:80px;"></h3>
+                            <ul class="nav side-menu">
+                                <!-- <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="display: none">
+                                        <li><a href="index.html">Dashboard</a>
+                                        </li>
+                                        <li><a href="index2.html">Dashboard2</a>
+                                        </li>
+                                        <li><a href="index3.html">Dashboard3</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+
+                                <li><a href="#/product"><i class="fa fa-list-ul"></i> สินค้าทั้งหมด</a></li>
+                                <li><a href="#/product/addproduct"><i class="fa fa-plus"></i> เพิ่มสินค้า</a></li>
+                                <li><a href="#/product/promotion"><i class="fa fa-gift"></i> โปรโมชั่นสินค้า</a></li>
+                                
+                                <br>
+
+                                <li>
+                                    <a href="#/order/new"><i class="fa fa-plus-square-o"></i> รายการสั่งซื้อใหม่</a>
+                                </li>
+                                <li>
+                                    <a href="#/order/confirmed"><i class="fa fa-bus"></i> รายการสั่งซื้อรอจัดส่ง</a>
+                                </li>
+                                <li>
+                                    <a href="#/order/old"><i class="fa fa-check-circle"></i> รายการสั่งซื้อจัดส่งแล้ว</a>
+                                </li>
+
+                                <br>
+
+                                <li>
+                                    <a href="#/inbox"><i class="fa fa-comments-o"></i> ข้อความ</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right" ng-controller="loginCtl">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="assets/images/user.png" alt="">{{adminname}}
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+                                    <li><a href="javascript:;">  Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Help</a>
+                                    </li>
+                                    <li><a href="" ng-click="logout()"><i class="fa fa-sign-out pull-right"></i> ออกจากระบบ</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            
+
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="" ng-view>
+                    
+                    <!--ng-view-->
+                    
+                </div>
+
+                <!-- footer content -->
+                <footer>
+                    <div class="">
+                        <p class="pull-right">© 2015 EasyWatch, ระบบจัดการร้าน
+                            <span class="lead"> <i class="fa fa-clock-o"></i> EasyWatch</span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+
+            </div>
+            <!-- /page content -->
+        </div>
+        
+        <div class="modal fade loginModal" ng-controller="loginCtl" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">เข้าสู่ระบบ</h4>
+                    </div>
+                    <form class="form-horizontal from-label-left">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="loginname" class="col-sm-2 control-label">Username</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="loginname" ng-model="adminname" ng-change="reqCh()" placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginpass" class="col-sm-2 control-label">Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="loginpass" ng-model="adminpass" ng-change="reqCh()" placeholder="Passwordd">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <p class="text-success">{{ere}}</p>
+                            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                            <button type="button" ng-click="login()" class="btn btn-primary" ng-disabled="!adminname || !adminpass">เข้าสู่ระบบ</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        <script type="text/javascript">
+            $(window).load(function(){
+                if($('#uname').text().length == 0){
+                    $('.loginModal').modal('show');
+                }          
+            });
+        </script>
+
+    </div>
+
+    <div id="custom_notifications" class="custom-notifications dsp_none">
+        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+        </ul>
+        <div class="clearfix"></div>
+        <div id="notif-group" class="tabbed_notifications"></div>
+    </div>
+    
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- chart js 
+    <script src="js/chartjs/chart.min.js"></script>  -->
+    <!-- bootstrap progress js -->
+    <script src="assets/js/progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="assets/js/nicescroll/jquery.nicescroll.min.js"></script>
+    <!-- icheck -->
+    <script src="assets/js/icheck/icheck.min.js"></script>
+
+    <script src="assets/js/custom.js"></script>
+
+    <!-- moris js 
+    <script src="js/moris/raphael-min.js"></script>
+    <script src="js/moris/morris.js"></script>
+    <script src="js/moris/example.js"></script>  -->
+
+
+    <!-- Fix for old browsers -->
+    <script src="assets/js/console-sham.min.js"></script>
+    
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/angular-route.min.js"></script>
+    <script src="assets/js/angular-cookies.min.js"></script>
+    <script src="assets/js/angular-sanitize.min.js"></script>
+
+    <script src="assets/js/angular-file-upload.min.js"></script>
+    <script src="assets/js/simplePagination.js"></script>
+
+    <!-- Text AngularJS -->
+    <script src="assets/js/textAngular-rangy.min.js"></script>
+    <script src="assets/js/textAngular-sanitize.min.js"></script>
+    <script src="assets/js/textAngular.min.js"></script>
+
+    
+    <script src="app.js"></script>
+    <script src="modules/userModule.js"></script>
+    <script src="modules/productModule.js"></script>
+    <script src="modules/orderModule.js"></script>
+
+    <!--thumbnails for images-->
+    <script src="assets/js/directives.js"></script>
+    
+
+</body>
+
+</html>

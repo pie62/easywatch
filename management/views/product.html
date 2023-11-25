@@ -1,0 +1,160 @@
+<div class="page-title">
+	<div class="title_left">
+		<h3>สินค้าทั้งหมด</h3>
+	</div>
+
+	<div class="title_right">
+		<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+			<!-- <div class="input-group">
+				<input type="text" class="form-control" placeholder="Search for...">
+				<span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+			</div> -->
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+
+<div class="row">
+
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">    <!-- style="height:600px;" -->
+			<div class="x_title">
+				<h2>จำนวนทั้งหมด {{products.length}} ชิ้น</h2>
+				<!-- <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                    	
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                </ul> -->
+				<!-- <div class="navbar-right">
+					<input type="number" ng-model="rowsize">
+					แสดง
+					<select class="form-control">
+					  	<option>1</option>
+					  	<option>2</option>
+					  	<option>3</option>
+					  	<option>4</option>
+					  	<option>5</option>
+					</select>
+				</div> -->
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				
+				<div class="row">
+					<div class="col-md-3 col-xs-12 col-md-offset-9">
+						<div class="input-group">
+						   	<input type="text" class="form-control" ng-model="q" placeholder="ค้นข้อมูลในตาราง">
+						   	<span class="input-group-btn">
+						        <button class="btn btn-default" type="button" ng-click="q = ''"><i class="fa fa-close"></i></button>
+						   	</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table table-striped responsive-utilities jambo_table bulk_action">
+							<thead>
+								<tr class="headings">
+									<th class="column-title">ลำดับ</th>
+									<th class="column-title">ยี่ห้อ</th>
+									<th class="column-title">รุ่น</th>
+									<th class="column-title">สี</th>
+									<th class="column-title">การรับประกัน</th>
+									<th class="column-title">ราคา</th>
+									<th class="column-title">จำนวน</th>
+									<th class="column-title">รายละเอียด</th>
+									<th class="column-title">แก้ไข</th>
+									<th class="column-title">ลบ</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="product in products | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage | filter:q as results">
+									<td>{{pagination.page * pagination.perPage + $index + 1}}</td>
+									<td>{{product.brand_name}}</td>
+									<td>{{product.model}}</td>
+									<td>{{product.color}}</td>
+									<td>{{product.warranty}}</td>
+									<td>{{product.price | currency:'':0}}</td>
+									<td>{{product.stock}}</td>
+									<td>
+										<a href="#/product/{{product.model}}" class="btn btn-primary btn-xs">
+											<i class="fa fa-folder"></i> รายละเอียด
+										</a>
+									</td>
+									<td>
+										<a href="#/product/edit/{{product.model}}" class="btn btn-info btn-xs">
+											<i class="fa fa-pencil"></i> แก้ไข
+										</a>
+									</td>
+									<td>
+										<button type="button" class="btn btn-danger btn-xs" ng-click="modalRemoe(product)">
+											<i class="fa fa-trash-o"></i> ลบ
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6 col-xs-12">
+						<!-- <div class="form-inline">
+							<div class="form-group">
+								<label for="rSize">แสดง</label>
+								<input type="number" id="rSize" class="form-control" ng-model="rowSize" ng-change="rsCh()">
+									<select id="rSize" class="form-control" ng-model="rowSize">
+								
+								  	<option value="10">10</option>
+								  	<option value="15">15</option>
+								  	<option value="20">20</option>
+								  	<option value="25">25</option>
+								  	<option value="50">50</option>
+								  	<option value="100">100</option>
+								</select>
+							</div>
+							{{rowSize}}
+						</div> -->
+					</div>
+					<div class="col-md-6 col-xs-12">
+						<div class="text-right">
+							<ul class="pagination">
+								<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+								<li ng-repeat="n in [] | range: pagination.numPages" ng-class="{active: n == pagination.page}">
+								  	<a href="" ng-click="pagination.toPageId(n)">{{n + 1}}</a>
+								</li>
+								<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  	<div class="modal-dialog modal-sm" role="document">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        		<h4 class="modal-title" id="myModalLabel">ลบสินค้า !</h4>
+      		</div>
+      		<div class="modal-body">
+        		<h5>{{p.brand_name}} - {{p.model}}</h5>
+      		</div>
+	      	<div class="modal-footer">
+	        	<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+	        	<button type="button" class="btn btn-primary" ng-click="removeProduct(p)">ตกลง</button>
+	      	</div>
+    	</div>
+  	</div>
+</div>

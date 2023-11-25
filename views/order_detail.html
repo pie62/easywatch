@@ -1,0 +1,82 @@
+<div class="container">
+
+	<h3>รายละเอียดรายการสั่งซื้อ<small></small></h3>
+
+	<ol class="breadcrumb breadcrumb-arrow">
+        <li><a href="#/">หน้าแรก</a></li>
+        <li><a href="#/order">รายการสั่งซื้อ</a></li>
+        <li class="active"><span>รายละเอียดรายการสั่งซื้อ</span></li>
+    </ol>
+	
+	<div class="row" ng-hide="haveOrder">
+		<div class="col-md-12 col-xs-12 text-center">
+			<h2 style="color:#AAB2BD;padding:100px;">ไม่มีข้อมูลรายการสั่งซื้อที่ต้องการ</h2>
+		</div>
+	</div>
+	<br>
+	<div class="row" ng-hide="!haveOrder">
+		<div class="col-md-12 col-xs-12">
+
+			<div class="row">
+				<div class="col-md-6 col-xs-12">
+					<h5><strong>ID : </strong>{{order.id}}</h5>
+					<h5><strong>วันที่สั่งซื้อ : </strong> {{order.order_date | date:'dd/MM/yyyy'}}</h5>
+					<h5><strong>สถานะ : </strong> {{order.order_status}}</h5>
+				</div>
+				<div class="col-md-6 col-xs-12 text-right">
+					<h5><strong>{{order.first_name}} {{order.last_name}}</strong></h5>
+					<h5><strong>เบอร์โทรศัพท์ : </strong> {{order.phone}}</h5>
+					<h5><strong>Email : </strong> {{order.email}}</h5>
+					<h5><strong>ที่อยู่ : </strong> {{order.address}}</h5>
+				</div>
+			</div>
+			<br>
+
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th class="text-center">ลำดับ</th>
+							<th>ยี่ห้อ</th>
+							<th>รุ่น</th>
+							<th>สี</th>
+							<th>การรับประกัน</th>
+							<th class="text-center">ราคา</th>
+							<th class="text-center">จำนวน</th>
+							<th class="text-center">รวมราคา</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in items">
+							<td class="text-center">{{$index + 1}}</td>
+							<td>{{item.brand_name}}</td>
+							<td>{{item.model}}</td>
+							<td>{{item.color}}</td>
+							<td>{{item.warranty}}</td>
+							<td class="text-center" ng-hide="item.price_promotion > 0">{{item.price | currency:'':0}}</td>
+							<td class="text-center" ng-hide="item.price_promotion == 0">{{item.price_promotion | currency:'':0}}</td>
+							<td class="text-center">{{item.unit}}</td>
+							<td class="text-center" ng-hide="item.price_promotion > 0"><strong>{{item.price * item.unit | currency:'':0}}</strong></td>
+							<td class="text-center" ng-hide="item.price_promotion == 0"><strong>{{item.price_promotion * item.unit | currency:'':0}}</strong></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="text-right">
+				<h3><strong>รวมราคาทั้งหมด {{order.total_price | currency:'':0}} บาท</strong></h3>
+			</div>
+			<br>
+			<br>
+			<div class="text-right">
+				<button id="printBtn" type="button" class="btn btn-info"><i class="fa fa-print"></i> พิมพ์</button>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<script>
+	$('#printBtn').click(function() {
+		window.print(); 
+	});
+</script>
