@@ -3,7 +3,7 @@
 	$request = json_decode($postdata);
 
 	$uname = $request->username;
-	$pwd = $request->password;
+	$pwd = sha1($request->password);
 
     $host="localhost";
     $user="root"; // MySql Username
